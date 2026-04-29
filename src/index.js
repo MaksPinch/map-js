@@ -1,5 +1,16 @@
-import './css/style.css';
+export default class ErrorRepository {
+  constructor() {
+    this.errors = new Map();
 
-import './js/app';
+    this.errors.set(400, "Неверный запрос");
+    this.errors.set(404, "Персонаж не найден");
+    this.errors.set(500, "Внутренняя ошибка сервера");
+  }
 
-// TODO: write your code in app.js
+  translate(code) {
+    if (this.errors.has(code)) {
+      return this.errors.get(code);
+    }
+    return "Unknown error";
+  }
+}
